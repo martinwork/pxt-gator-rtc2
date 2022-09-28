@@ -8,16 +8,18 @@
 using namespace pxt;
 
 namespace gatorRTC {
-	//MicroBitI2C i2c(I2C_SDA0, I2C_SCL0);
-	RV3028 *rtc; //BME280 handles our Temp, pressure, and humidity
+	RV3028 *rtc = NULL;
+	
+	void init() {
+		if ( rtc == NULL) {
+			rtc = new RV3028;
+		}
+	}
 	
 	//%
 	void set24Time(uint8_t hours, uint8_t minutes, uint8_t seconds)
 	{
-		//if ( rtc == NULL)
-		//{
-		//	target_panic(111);
-		//}
+		init();
 		rtc->set24Hour();
 		rtc->setHours(hours);
 		rtc->setMinutes(minutes);
@@ -27,6 +29,7 @@ namespace gatorRTC {
 	//%
 	void set12Time(uint8_t hours, uint8_t minutes, uint8_t seconds, uint8_t amPm)
 	{
+		init();
 		rtc->set24Hour();
 		rtc->setHours(hours + (amPm * 12));
 		rtc->setMinutes(minutes);
@@ -37,30 +40,35 @@ namespace gatorRTC {
 	//%
 	void set12HourMode()
 	{
+		init();
 		rtc->set12Hour();
 	}
 	
 	//%
 	void set24HourMode()
 	{
+		init();
 		rtc->set24Hour();
 	}
 	
 	//%
 	bool is12HourMode()
 	{
+		init();
 		return rtc->is12Hour();
 	}
 	
 	//%
 	bool isAfternoon()
 	{
+		init();
 		return rtc->isPM();
 	}
 	
 	//%
 	void setDate(uint8_t weekday, uint8_t month, uint8_t day, uint8_t year)
 	{
+		init();
 		rtc->setWeekday(weekday);
 		rtc->setMonth(month);	
 		rtc->setDate(day);	
@@ -70,6 +78,7 @@ namespace gatorRTC {
 	//%
 	void setTimeComponent(uint8_t timeComponent, uint8_t value)
 	{
+		init();
 		switch (timeComponent)
 		{
 			case 1:
@@ -99,6 +108,7 @@ namespace gatorRTC {
 	//%
 	uint16_t timeComponent(uint8_t timeComponent)
 	{
+		init();
 		rtc->updateTime();
 		uint16_t returnValue;
 		switch (timeComponent)
@@ -134,6 +144,7 @@ namespace gatorRTC {
 	//%
 	uint16_t timestampComponent(uint8_t timeComponent)
 	{
+		init();
 		if (rtc->updateTimestamp())
 		{
 			uint16_t returnValue;
