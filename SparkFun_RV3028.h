@@ -20,6 +20,11 @@ Distributed as-is; no warranty is given.
 
 #pragma once
 
+#ifndef __MBED_H_
+#define __MBED_H_
+#include "mbed.h"
+#endif
+
 //The 7-bit I2C address of the RV3028
 #define RV3028_ADDR						0b10100100
 
