@@ -62,7 +62,14 @@ void RV3028::set12Hour()
 //Converts any current hour setting to 24 hour
 void RV3028::set24Hour()
 {
-	uBit.serial.printf( "%x, %x, %x, %x",  (unsigned int) this,  (unsigned int) &_tsCount,  (unsigned int) &_previousTsCount,  (unsigned int) &_timestampInitialized);
+	uBit.serial.printf( "%x, %x, %x, %x, %x\n",
+			   (unsigned int) this,
+			   (unsigned int) &_tsCount,
+			   (unsigned int) &_previousTsCount,
+			   (unsigned int) &_timestampInitialized,
+			   (unsigned int) _block256);
+	memset( _block256[256], 0xAA, 256);
+	
 	//Change to 24 hour mode
 	uint8_t setting = readRegister(RV3028_CTRL2);
 	setting &= ~(1<<CTRL2_12_24); //Clear the 12/24 hr bit
