@@ -45,7 +45,7 @@ uint8_t _timestamp[TIMESTAMP_ARRAY_LENGTH];
 //Constructor -- Specifies default configuration
 RV3028::RV3028( void )
 {
-	
+	target_panic(999);
 }
 
 //Configure RTC to output 1-12 hours
