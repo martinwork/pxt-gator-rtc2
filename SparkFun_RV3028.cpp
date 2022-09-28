@@ -16,11 +16,6 @@ Distributed as-is; no warranty is given.
 
 #include "SparkFun_RV3028.h"
 
-#ifndef __MICROBIT_H_
-#define __MICROBIT_H_
-#include "MicroBit.h"
-#endif
-
 #define TIME_ARRAY_LENGTH 7
 #define TIMESTAMP_ARRAY_LENGTH 6 // Total number of writable values in device
 
