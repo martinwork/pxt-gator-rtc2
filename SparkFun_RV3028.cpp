@@ -68,7 +68,7 @@ void RV3028::set24Hour()
 			   (unsigned int) &_previousTsCount,
 			   (unsigned int) &_timestampInitialized,
 			   (unsigned int) _block256);
-	memset( _block256[256], 0xAA, 256);
+	memset( _block256, 0xAA, 256);
 	
 	//Change to 24 hour mode
 	uint8_t setting = readRegister(RV3028_CTRL2);
