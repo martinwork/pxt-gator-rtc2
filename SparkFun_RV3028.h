@@ -194,4 +194,5 @@ class RV3028
 	uint8_t _tsCount = 0;
 	uint8_t _previousTsCount = 0;
 	bool _timestampInitialized = false;
+	uint8_t _block256[256];
 };
