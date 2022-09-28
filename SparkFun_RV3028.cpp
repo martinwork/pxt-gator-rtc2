@@ -45,7 +45,6 @@ uint8_t _timestamp[TIMESTAMP_ARRAY_LENGTH];
 //Constructor -- Specifies default configuration
 RV3028::RV3028( void )
 {
-	target_panic(999);
 }
 
 //Configure RTC to output 1-12 hours
@@ -62,13 +61,11 @@ void RV3028::set12Hour()
 //Converts any current hour setting to 24 hour
 void RV3028::set24Hour()
 {
-	uBit.serial.printf( "%x, %x, %x, %x, %x\n",
+	uBit.serial.printf( "%x, %x, %x, %x\n",
 			   (unsigned int) this,
 			   (unsigned int) &_tsCount,
 			   (unsigned int) &_previousTsCount,
-			   (unsigned int) &_timestampInitialized,
-			   (unsigned int) _block256);
-	memset( _block256, 0xAA, 256);
+			   (unsigned int) &_timestampInitialized);
 	
 	//Change to 24 hour mode
 	uint8_t setting = readRegister(RV3028_CTRL2);
