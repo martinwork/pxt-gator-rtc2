@@ -20,9 +20,9 @@ Distributed as-is; no warranty is given.
 
 #pragma once
 
-#ifndef __MBED_H_
-#define __MBED_H_
-#include "mbed.h"
+#ifndef __MICROBIT_H_
+#define __MICROBIT_H_
+#include "MicroBit.h"
 #endif
 
 //The 7-bit I2C address of the RV3028
@@ -194,5 +194,4 @@ class RV3028
 	uint8_t _tsCount = 0;
 	uint8_t _previousTsCount = 0;
 	bool _timestampInitialized = false;
-	uint8_t _block256[256];
 };
