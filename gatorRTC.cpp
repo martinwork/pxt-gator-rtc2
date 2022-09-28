@@ -14,6 +14,10 @@ namespace gatorRTC {
 	//%
 	void set24Time(uint8_t hours, uint8_t minutes, uint8_t seconds)
 	{
+		if ( rtc == NULL)
+		{
+			target_panic(111);
+		}
 		rtc->set24Hour();
 		rtc->setHours(hours);
 		rtc->setMinutes(minutes);
